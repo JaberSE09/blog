@@ -1,5 +1,24 @@
 {
   "dependencies": {
+    "@babel/core": "^7.19.0",
     "npm": "^8.19.1"
-  }
+  },
+  "name": "blogsite",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd my-blog-back-end && npx nodemon src/server.js\" \"cd my-blog-front-end && npm start\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaberSE09/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaberSE09/blog/issues"
+  },
+  "homepage": "https://github.com/JaberSE09/blog#readme",
+  "description": ""
 }

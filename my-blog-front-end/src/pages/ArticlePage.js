@@ -1,24 +1,28 @@
+import { useState,useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ArticleList from '../components/ArticlesList';
-import articleContent from "./article-content";
-import NotFoundPage from './NotFoundPage';
+import CommentList from '../components/CommentList';
+import UpvoteList from '../components/UpvoteList';
 const ArticlePage = () => {
+    const [articleInfo, setArticleInfo] = useState({upvote: 0, comment: []})
     const {name} = useParams();
-    const article = articleContent.find(article => article.name === name);
-    if(!article) return <NotFoundPage />
-    const otherArticles = articleContent.filter(article => article.name !== name);
+    useEffect(() =>{
+        const fetchData = async () =>{
+            const result = await fetch(`/api/articles/${name}`)
+            const body =await result.json()
+            setArticleInfo(body)
+        }
+        fetchData()
+
+    }, [name])
+    
     return(
         
     <div>
-    <h1>{article.title}</h1>
-    {article.content.map((paragraph, key) => (
-        <p key={key}>{paragraph}</p>
-    ))}
-
-<h3>Other Articles</h3>
-    <ArticleList articles={otherArticles} />
+       <UpvoteList articleName={name} setArticleInfo={setArticleInfo} upvotes={articleInfo.upvote} />=
+    <p>This post has been upvoted {articleInfo.upvote}</p>
+    <CommentList comment={articleInfo.comment} />
     </div>
-)
+    )
     }
 
 
