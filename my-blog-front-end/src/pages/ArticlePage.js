@@ -18,8 +18,7 @@ const ArticlePage = () => {
     return(
         
     <div>
-       <UpvoteList articleName={name} setArticleInfo={setArticleInfo} upvotes={articleInfo.upvote} />=
-    <p>This post has been upvoted {articleInfo.upvote}</p>
+       <UpvoteList articleName={name} setArticleInfo={setArticleInfo} upvotes={articleInfo.upvote} />
     <CommentList comment={articleInfo.comment} />
     </div>
     )
