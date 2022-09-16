@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd my-blog-back-end && npx nodemon src/server.js\" \"cd my-blog-front-end && npm start\"",
+    "start": "concurrently \"cd my-blog-back-end && npx nodemon --exec npx babel-node src/server.js\" \"cd my-blog-front-end && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

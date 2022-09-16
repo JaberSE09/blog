@@ -1,11 +1,12 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import { MongoClient } from 'mongodb';
+const express = require('express');
+const bodyParser =require('body-parser');
+const { MongoClient } = require('mongodb');
+const path = require('path');
 
 const app = express();
 
 app.use(bodyParser.json());
-
+app.use(express.static(path.join(__dirname, "/build")))
 const withDB = async (operations, res) => {
     try {
         const client = await MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true });
@@ -27,6 +28,7 @@ app.get('/api/articles/:name', async (req, res) => {
         res.status(200).json(articleInfo);
     }, res);
 })
+
 
 app.post('/api/articles/:name/upvote', async (req, res) => {
     withDB(async (db) => {
@@ -60,5 +62,7 @@ app.post('/api/articles/:name/add-comment', (req, res) => {
         res.status(200).json(updatedArticleInfo);
     }, res);
 });
-
+app.get("*", (req,res) =>{
+    res.sendFile(path.join(__dirname + "/build/index.html"))
+})
 app.listen(8000, () => console.log('Listening on port 8000'));

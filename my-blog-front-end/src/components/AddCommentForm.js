@@ -18,6 +18,7 @@ const AddCommentForm = ({ articleName, setArticleInfo }) => {
         setCommentText('');
     }
 
+    return(
     <div id="add-comment-form">
             <h3>Add a Comment</h3>
             <label>
@@ -30,6 +31,7 @@ const AddCommentForm = ({ articleName, setArticleInfo }) => {
             </label>
             <button onClick={() => addComment()}>Add Comment</button>
         </div>
+    )
 }
 
 export default AddCommentForm;
